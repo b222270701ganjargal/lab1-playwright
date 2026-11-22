@@ -16,6 +16,14 @@ test('Амжилттай нэвтрэх', async ({ page }) => {
   await expect(page.getByText('Products', { exact: true })).toBeVisible();
   await expect(page).toHaveURL(/inventory\.html/);
 
+  // 5. Системээс гарах
+  await page.locator('#react-burger-menu-btn').click();
+  await page.locator('#logout_sidebar_link').click();
+
+  // 6. Login хуудас руу буцсаныг шалгах
+  await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+
+
 });
 
 test('Буруу нууц үгээр нэвтрэх', async ({ page }) => {
@@ -57,5 +65,7 @@ test('Барааг сагсанд нэмэх', async ({ page }) => {
   // 5. Сагс руу орж бараа нэмэгдсэнийг шалгах
   await page.locator('[data-test="shopping-cart-link"]').click();
   await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+
+
 });
 
